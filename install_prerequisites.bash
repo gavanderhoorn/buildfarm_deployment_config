@@ -20,3 +20,14 @@ pip3 install -U pip
 
 # config for librarian for more efficient syncronization
 librarian-puppet config rsync true --global
+
+
+# check cron setup (for https://github.com/ros-infrastructure/buildfarm_deployment/issues/187)
+printf "Checking %-20s .. " "cron setup"
+if [ ! -e /etc/cron.allow ] || [ -e /etc/cron.deny ];
+then
+  echo -e "WARN  (found 'cron.allow' and/or 'cron.deny')\n"
+  echo -e "Warning: Jenkins agent crontab configuration may fail.\n"
+else
+  echo "OK"
+fi
