@@ -34,9 +34,6 @@ is_pkg_installed "puppet"
 is_pkg_installed "librarian-puppet"
 is_pkg_installed "apt-transport-https"
 
-# config for librarian for more efficient syncronization
-librarian-puppet config rsync true --global
-
 # check cron setup (for https://github.com/ros-infrastructure/buildfarm_deployment/issues/187)
 printf "Checking %-20s .. " "cron setup"
 if [ ! -e /etc/cron.allow ] || [ -e /etc/cron.deny ];
@@ -46,3 +43,6 @@ then
 else
   echo "OK"
 fi
+
+# config for librarian for more efficient syncronization
+librarian-puppet config rsync true --global
